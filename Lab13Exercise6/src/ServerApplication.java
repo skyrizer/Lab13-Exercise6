@@ -36,15 +36,13 @@ public class ServerApplication {
 			
 			String input = bufferReader.readLine();
 			String targetLanguage =bufferReader.readLine();
-			System.out.println("input = " + input);
-			
+	
+			// Get the translated word
 			String translatedWord = Translator.translate(input,targetLanguage);
-			// get the value for the total words using method wordsCount()
-			int totalWords = wordsCount(input);
+			
 
 			// Create stream to write data on the network
 			PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream());
-
 			printWriter.println(translatedWord);
 			printWriter.flush();
 			System.out.println("translated word sent to client");
@@ -69,11 +67,6 @@ public class ServerApplication {
 		
 		
 	}
-	
-	private static int wordsCount(String text) {
-        // Custom word count implementation based on your requirements
-        String[] words = text.trim().split("\\s+");
-        return words.length;
-    }
+
 
 }
